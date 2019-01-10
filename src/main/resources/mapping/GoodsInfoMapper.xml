@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangzi.distributed.lock.dao.GoodsInfoDao">
+
+	<resultMap type="com.wangzi.distributed.lock.entity.GoodsInfo" id="goodsInfoMap">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="price" property="price" />
+		<result column="repertory" property="repertory" />
+	</resultMap>
+	<select id="getGoodsInfo" resultMap="goodsInfoMap">
+		select id, name, price, repertory
+		from goods
+		where id = #{id}		
+	</select>
+	
+	<update id="updateRepertory">
+		UPDATE goods 
+		SET repertory = repertory -1 
+		WHERE id = #{id}
+	</update>
+</mapper>
